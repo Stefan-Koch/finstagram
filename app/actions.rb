@@ -16,7 +16,8 @@ post "/signup" do
 
   @user = User.new(email: email, avatar_url: avatar_url, username: username, password: password)
 
-  if @user.save
+  if @user.valid?
+    @user.save
     "User #{username} saved!"
   else
     erb(:signup)
